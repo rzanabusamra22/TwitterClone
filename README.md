@@ -13,9 +13,7 @@
 1. [Technologies Used](#technologies-used)
 1. [Requirements](#requirements)
 1. [Development](#development)
-    1. [Installing Dependencies FrontEnd](#installing-dependencies-frontend)
-    1. [Installing Dependencies BackEnd](#installing-dependencies-backend)
-    1. [Deploying](#deploying)
+    1. [Installing Dependencies](#installing-dependencies)
 1. [Links](#links)
 1. [Picture Documentation](#picture-documentation)
 
@@ -57,7 +55,7 @@ npm install
 
 ```
 
-## Links
+### Links
 
 - Deployed: 
 
