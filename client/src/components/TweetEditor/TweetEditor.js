@@ -75,7 +75,7 @@ function TweetEditor() {
                 }
             });
 
-            toast.success("Tweet gönderimi başarılı.");
+            toast.success("Tweet posted successfully.");
         });
     };
 
