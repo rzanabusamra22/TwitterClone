@@ -40,7 +40,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/signin', async(req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findOne({ username: req.body.username })
         const match = await bcrypt.compare(req.body.password, user.password)
         if (match) {
             const token = await jwt.sign({ _id: user._id }, process.env.secret)
