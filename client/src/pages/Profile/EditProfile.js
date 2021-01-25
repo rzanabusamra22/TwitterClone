@@ -53,10 +53,10 @@ function EditProfile() {
 
         <SearchBox value={fullname} onChange={(e) => setFullname(e.target.value)} icon={false} text="Full Name" />
 
-        <SearchBox value={bio} onChange={(e) => setBio(e.target.value)} icon={false} text="Biyografi" />
+        <SearchBox value={bio} onChange={(e) => setBio(e.target.value)} icon={false} text="Biography" />
 
 
-        <ThemeButton primary onClick={handleEdit}>Güncelle</ThemeButton>
+        <ThemeButton primary onClick={handleEdit}>Update</ThemeButton>
       </div>
 
     </div>
