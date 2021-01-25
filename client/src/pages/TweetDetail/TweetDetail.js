@@ -24,13 +24,13 @@ function TweetDetail({ }) {
         if (e.key === 'Enter') {
             e.preventDefault();
 
-            if (!commentText) return toast.error('Önce yorum yaz..:)')
+            if (!commentText) return toast.error('write a comment first ..:)')
 
             client(`/posts/${tweet._id}/comments`, {
                 body: { text: commentText },
             }).then((resp) => {
                 setComments([...comments, resp.data]);
-                toast.success('Yorum yapıldı.')
+                toast.success('Comment was posted')
             });
 
             setCommentText('')
