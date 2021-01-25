@@ -12,17 +12,17 @@ export default {
 const Template = (args) => (
     <div style={{ width: "350px" }}>
         <List
-            title={`Talvez você curta`}
+            title={`Maybe you like`}
             icon={<More />}
             elements={[
                 <FollowSuggestion
-                    name="Luiz Batanero"
-                    nickname="@luizbatanero"
+                    name="Asem Basheer"
+                    nickname="@asembasheer"
                 />,
-                <FollowSuggestion name="Luke Morales" nickname="@lukemorales" />,
+                <FollowSuggestion name="Imad Aqel" nickname="@imadaqel" />,
                 <FollowSuggestion
-                    name="Camila Magalhães"
-                    nickname="@camilaamgl"
+                    name="Aya"
+                    nickname="@aya"
                 />,
             ]}
         />
