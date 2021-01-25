@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 import { loadUser } from './Redux/user/userAction'
-import Main from './00/SignIn-SignUp/main'
 
 import React, { useContext, useEffect } from 'react';
 import { ToastContainer } from "react-toastify";
