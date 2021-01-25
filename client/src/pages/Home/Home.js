@@ -61,7 +61,7 @@ function Home() {
 
             { feed && feed.length == 0 && !loading && (
                 <div className="loading">
-                    <TextTitle>Başkalarının Gönderilerini Görmek İçin Onları Takip Et..</TextTitle>
+                    <TextTitle>Follow Them To See Other People's Posts ..</TextTitle>
                 </div>
             )}
 
