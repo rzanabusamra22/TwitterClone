@@ -7,7 +7,7 @@ import './News.css';
 function List({ tag, className }) {
     return (
         <Link to={`explore?tag=${tag}`} className={['extra__news', className].join(' ')}>
-            <TextBody gray>Trending in Turkey</TextBody>
+            <TextBody gray>Trending in Palestine</TextBody>
             <TextBody bold>{`#${tag}`}</TextBody>
         </Link>
     )
