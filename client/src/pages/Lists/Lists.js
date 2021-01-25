@@ -31,7 +31,7 @@ function Lists() {
 
             <div className='loading'>
                 {!whoFollow && <Loading />}
-                {whoFollow && whoFollow?.length === 0 && 'Takip edecek başka biri kalmadı .'}
+                {whoFollow && whoFollow?.length === 0 && 'There is no one else left to follow.'}
             </div>
         </>
     )
