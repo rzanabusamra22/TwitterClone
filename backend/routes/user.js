@@ -9,11 +9,8 @@ const jwt = require('jsonwebtoken')
 router.get('/auth', auth, (req, res) => {
     res.json({
         id: req.user._id,
-        name: req.user.name,
+        username: req.user.username,
         email: req.user.email,
-        role: req.user.role,
-        number: req.user.number,
-        address:req.user.address,
         success: true
     })
 })
@@ -24,11 +21,9 @@ router.post('/signup', async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashedPw = await bcrypt.hash(req.body.password, salt)
         const user = new User({
-            name: req.body.name,
+            username: req.body.username,
             email: req.body.email,
-            password: hashedPw,
-            mobile: req.body.mobile,
-            address: req.body.address
+            password: hashedPw
         })
         await user.save()
         const token = await jwt.sign({ _id: user._id }, process.env.secret)
@@ -45,7 +40,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/signin', async(req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findOne({ username: req.body.username })
         const match = await bcrypt.compare(req.body.password, user.password)
         if (match) {
             const token = await jwt.sign({ _id: user._id }, process.env.secret)
