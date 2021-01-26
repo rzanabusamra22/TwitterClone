@@ -61,11 +61,11 @@ function Register({ setAuth }) {
 
     return (
         <>
-            <form onSubmit={handleLogin} >
+            <form onSubmit={handleLogin}   style={{ width:"500px"}}>
                 <div className="auth-page__logo">
                     <Button icon><Twitter /></Button>
                 </div>
-                <TextTitle title style={{ fontSize: "23px", marginBottom: "5px" }}>Register on Twitter</TextTitle>
+                <TextTitle title style={{ fontSize: "23px", marginBottom: "10px" }}>Create your account</TextTitle>
 
                 <div className="form-control">
                     <input
@@ -92,16 +92,18 @@ function Register({ setAuth }) {
                     />
                 </div>
 
-
-                <ThemeButton full size="large" type="submit">
+                {/* <ThemeButton full size="large" type="submit">
                     {loading ? "Signing in" : "Sign up"}
+                </ThemeButton> */}
+                <ThemeButton full size="large" type="submit">
+                    {"Sign up"}
                 </ThemeButton>
-                <div style={{ margin: "5px" }}>
+                {/* <div style={{ margin: "5px" }}>
                     <TextBody bold>or</TextBody>
                 </div>
                 <ThemeButton full size="large" primary type="button" onClick={setAuth}>
                     Login
-                </ThemeButton>
+                </ThemeButton> */}
             </form>
         </>
     )

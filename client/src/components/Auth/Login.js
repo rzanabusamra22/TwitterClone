@@ -54,11 +54,11 @@ function Login({ setAuth }) {
 
     return (
         <>
-            <form onSubmit={handleLogin} >
+            <form onSubmit={handleLogin} style={{ width:"500px"}}>
                 <div className="auth-page__logo">
                     <Button icon><Twitter /></Button>
                 </div>
-                <TextTitle title style={{ fontSize: "23px", marginBottom: "5px" }}>Login to Twitter</TextTitle>
+                <TextTitle title style={{ fontSize: "23px", marginBottom: "10px" }}>Login to Twitter</TextTitle>
 
                 <div className="form-control">
                     <input
@@ -78,15 +78,18 @@ function Login({ setAuth }) {
                 </div>
 
 
-                <ThemeButton disabled={loading} full size="large" type="submit">
+                {/* <ThemeButton disabled={loading} full size="large" type="submit">
                     {loading ? "Logging in" : "Login"}
+                </ThemeButton> */}
+                <ThemeButton disabled={loading} full size="large" type="submit">
+                    {"Login"}
                 </ThemeButton>
-                <div style={{ margin: "5px" }}>
+                {/* <div style={{ margin: "5px" }}>
                     <TextBody bold>or</TextBody>
                 </div>
                 <ThemeButton full size="large" primary type="button" onClick={setAuth}>
                     Signup
-                </ThemeButton>
+                </ThemeButton> */}
             </form>
         </>
     )

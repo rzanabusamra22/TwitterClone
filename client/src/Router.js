@@ -41,6 +41,7 @@ function Router() {
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    {/* ??? */}
                     <Route exact path="/more" component={More} />
                     <Route exact path="/explore" component={Explore} />
                     <Route exact path="/lists" component={Lists} />
