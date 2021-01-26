@@ -28,3 +28,13 @@
 .auth-page__logo svg {
     font-size: 36px
 }
+/* Main page css */
+
+.main{
+    align-items: center;
+    justify-content: center;
+}
+
+#right-side{
+    margin-top:135px ;
+}
