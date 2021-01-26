@@ -35,7 +35,7 @@ export const client = (endpoint, { body, ...customConfig } = {}) => {
     const headers = { "Content-Type": "application/json" };
 
     if (token) {
-        headers.Authorization = `Bearer ${token}`;
+        headers.Authorization = `${token}`;
     }
 
     const config = {
@@ -50,8 +50,8 @@ export const client = (endpoint, { body, ...customConfig } = {}) => {
     if (body) {
         config.body = JSON.stringify(body);
     }
-
-    return fetch(`${process.env.REACT_APP_BACKEND_URL}${endpoint}`, config).then(
+    // console.log(">>>>>",process.env.REACT_APP_BACKEND_URL)
+    return fetch(`http://127.0.0.1:5000${endpoint}`, config).then(
         async (res) => {
             const data = await res.json();
 

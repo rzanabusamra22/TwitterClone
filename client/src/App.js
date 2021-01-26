@@ -12,6 +12,10 @@ import { UserContext } from './context/UserContext';
 import './styles/index.css';
 import 'emoji-mart/css/emoji-mart.css'
 
+
+// test 
+import Main from './components/Auth/Main'
+import Signup from './components/Auth/SignUpDialog'
 function App() {
 
   const { user } = useContext(UserContext);
@@ -20,7 +24,9 @@ function App() {
   return (
     <>
       <ToastContainer autoClose={2000} closeButton={false} />
-      {user ? <Router /> : <Auth />}
+      {user ? <Router /> : <Main/>}
+      {/* <ToastContainer autoClose={2000} closeButton={false} />
+      {user ? <Router /> : <Auth />} */}
     </>
   );
 }

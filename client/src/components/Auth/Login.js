@@ -35,16 +35,17 @@ function Login({ setAuth }) {
         const body = { username: username, password: password };
         setLoading(true)
         try {
-            const { token } = await client("/auth/login", { body });
+            const { token } = await client("/api/user/signin", { body });
             localStorage.setItem("token", token);
         } catch (err) {
             return toast.error(err.message);
         } finally {
             setLoading(false)
         }
-        const user = await client("/auth/me");
-        localStorage.setItem("user", JSON.stringify(user.data));
-        setUser(user.data);
+        const user = await client("/api/user/auth");
+        console.log('user>>>',user)
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
 
 
         setUsername('')
@@ -53,11 +54,11 @@ function Login({ setAuth }) {
 
     return (
         <>
-            <form onSubmit={handleLogin} >
+            <form onSubmit={handleLogin} style={{ width:"500px"}}>
                 <div className="auth-page__logo">
                     <Button icon><Twitter /></Button>
                 </div>
-                <TextTitle title style={{ fontSize: "23px", marginBottom: "5px" }}>Login to Twitter</TextTitle>
+                <TextTitle title style={{ fontSize: "23px", marginBottom: "10px" }}>Login to Twitter</TextTitle>
 
                 <div className="form-control">
                     <input
@@ -77,15 +78,18 @@ function Login({ setAuth }) {
                 </div>
 
 
-                <ThemeButton disabled={loading} full size="large" type="submit">
+                {/* <ThemeButton disabled={loading} full size="large" type="submit">
                     {loading ? "Logging in" : "Login"}
+                </ThemeButton> */}
+                <ThemeButton disabled={loading} full size="large" type="submit">
+                    {"Login"}
                 </ThemeButton>
-                <div style={{ margin: "5px" }}>
+                {/* <div style={{ margin: "5px" }}>
                     <TextBody bold>or</TextBody>
                 </div>
                 <ThemeButton full size="large" primary type="button" onClick={setAuth}>
                     Signup
-                </ThemeButton>
+                </ThemeButton> */}
             </form>
         </>
     )

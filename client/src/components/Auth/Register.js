@@ -9,6 +9,7 @@ import Button from '../Button/Button'
 
 import { UserContext } from "../../context/UserContext";
 import { client } from '../../utils'
+import {Local_IP} from '../../Local_IP'
 
 function Register({ setAuth }) {
 
@@ -18,6 +19,7 @@ function Register({ setAuth }) {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
 
     const [loading, setLoading] = useState(false)
 
@@ -34,10 +36,11 @@ function Register({ setAuth }) {
         }
 
 
-        const body = { username: username, password: password };
+        const body = { username ,email , password };
         setLoading(true)
+        console.log(Local_IP)
         try {
-            const { token } = await client("/auth/signup", { body });
+            const { token } = await client(`/api/user/signup`, { body });
             localStorage.setItem("token", token);
         } catch (err) {
             return toast.error(err.message);
@@ -45,10 +48,10 @@ function Register({ setAuth }) {
             setLoading(false)
         }
 
-        const user = await client("/auth/me");
-        setUser(user.data);
+        // const user = await client("/auth/me");
+        // setUser(user.data);
 
-        localStorage.setItem("user", JSON.stringify(user.data));
+        // localStorage.setItem("user", JSON.stringify(user.data));
 
 
         setUsername('')
@@ -58,11 +61,11 @@ function Register({ setAuth }) {
 
     return (
         <>
-            <form onSubmit={handleLogin} >
+            <form onSubmit={handleLogin}   style={{ width:"500px"}}>
                 <div className="auth-page__logo">
                     <Button icon><Twitter /></Button>
                 </div>
-                <TextTitle title style={{ fontSize: "23px", marginBottom: "5px" }}>Register on Twitter</TextTitle>
+                <TextTitle title style={{ fontSize: "23px", marginBottom: "10px" }}>Create your account</TextTitle>
 
                 <div className="form-control">
                     <input
@@ -70,6 +73,14 @@ function Register({ setAuth }) {
                         placeholder="User name"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div className="form-control">
+                    <input
+                        type="email"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="form-control" style={{ marginBottom: "15px" }}>
@@ -81,16 +92,18 @@ function Register({ setAuth }) {
                     />
                 </div>
 
-
-                <ThemeButton full size="large" type="submit">
+                {/* <ThemeButton full size="large" type="submit">
                     {loading ? "Signing in" : "Sign up"}
+                </ThemeButton> */}
+                <ThemeButton full size="large" type="submit">
+                    {"Sign up"}
                 </ThemeButton>
-                <div style={{ margin: "5px" }}>
+                {/* <div style={{ margin: "5px" }}>
                     <TextBody bold>or</TextBody>
                 </div>
                 <ThemeButton full size="large" primary type="button" onClick={setAuth}>
                     Login
-                </ThemeButton>
+                </ThemeButton> */}
             </form>
         </>
     )
