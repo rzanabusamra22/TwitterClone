@@ -23,8 +23,8 @@ function App() {
 
   return (
     <>
-      {/* <Signup/> */}
-       <Main/>
+      <ToastContainer autoClose={2000} closeButton={false} />
+      {user ? <Router /> : <Main/>}
       {/* <ToastContainer autoClose={2000} closeButton={false} />
       {user ? <Router /> : <Auth />} */}
     </>
