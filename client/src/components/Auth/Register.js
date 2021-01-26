@@ -9,6 +9,7 @@ import Button from '../Button/Button'
 
 import { UserContext } from "../../context/UserContext";
 import { client } from '../../utils'
+import {Local_IP} from '../../Local_IP'
 
 function Register({ setAuth }) {
 
@@ -18,6 +19,7 @@ function Register({ setAuth }) {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
 
     const [loading, setLoading] = useState(false)
 
@@ -34,10 +36,11 @@ function Register({ setAuth }) {
         }
 
 
-        const body = { username: username, password: password };
+        const body = { username ,email , password };
         setLoading(true)
+        console.log(Local_IP)
         try {
-            const { token } = await client("/auth/signup", { body });
+            const { token } = await client(`/api/user/signup`, { body });
             localStorage.setItem("token", token);
         } catch (err) {
             return toast.error(err.message);
@@ -45,10 +48,10 @@ function Register({ setAuth }) {
             setLoading(false)
         }
 
-        const user = await client("/auth/me");
-        setUser(user.data);
+        // const user = await client("/auth/me");
+        // setUser(user.data);
 
-        localStorage.setItem("user", JSON.stringify(user.data));
+        // localStorage.setItem("user", JSON.stringify(user.data));
 
 
         setUsername('')
@@ -70,6 +73,14 @@ function Register({ setAuth }) {
                         placeholder="User name"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div className="form-control">
+                    <input
+                        type="email"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="form-control" style={{ marginBottom: "15px" }}>

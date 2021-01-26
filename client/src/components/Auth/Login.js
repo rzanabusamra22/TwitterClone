@@ -36,16 +36,17 @@ function Login({ setAuth }) {
         const body = { username: username, password: password };
         setLoading(true)
         try {
-            const { token } = await client("/auth/login", { body });
+            const { token } = await client("/api/user/signin", { body });
             localStorage.setItem("token", token);
         } catch (err) {
             return toast.error(err.message);
         } finally {
             setLoading(false)
         }
-        const user = await client("/auth/me");
-        localStorage.setItem("user", JSON.stringify(user.data));
-        setUser(user.data);
+        const user = await client("/api/user/auth");
+        console.log('user>>>',user)
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
 
 
         setUsername('')
