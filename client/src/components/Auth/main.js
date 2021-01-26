@@ -1,16 +1,23 @@
 import React, { useContext, useState } from 'react'
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-import ThemeButton from '../ThemeButton/ThemeButton'
-import TextBody from '../Text/body'
+
 import TextTitle from '../Text/title'
 import { Twitter } from '../icons'
 import Button from '../Button/Button'
 
-import { UserContext } from "../../context/UserContext";
-import { client } from '../../utils'
+import Dialog from './SignUpDialog'
+import Dialog2 from './SignInDialog'
 
 function Main() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
     return (
         <>
@@ -27,14 +34,11 @@ function Main() {
                     <TextTitle title style={{ fontSize: "30px", marginBottom: "70px" , marginTop: "10px" , marginLeft: "150px"}}><b>See what’s happening in <br></br> the world right now</b></TextTitle>
                     <TextTitle title style={{ fontSize: "16px", marginBottom: "15px" , marginLeft: "150px" }}><b>Join Twitter today.</b></TextTitle>
                     
-                    {/* <ThemeButton full size="large" primary type="button" onClick={setAuth}></ThemeButton> */}
-                    <ThemeButton full size="large" primary type="button" style={{ marginBottom: "15px" , marginLeft: "150px", width:"60%" }}>
-                    Sign up
-                   </ThemeButton>
+                    {/* SignUp Dialog */}
+                   <Dialog />
 
-                   <ThemeButton full size="large" type="submit" style={{ marginBottom: "15px" , marginLeft: "150px", width:"60%" }}>
-                    Log in
-                   </ThemeButton>
+                   <Dialog2 />
+                   
                </div>
             </div>
          </div>

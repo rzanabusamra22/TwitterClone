@@ -14,7 +14,8 @@ import 'emoji-mart/css/emoji-mart.css'
 
 
 // test 
-import Main from './components/Auth/main'
+import Main from './components/Auth/Main'
+import Signup from './components/Auth/SignUpDialog'
 function App() {
 
   const { user } = useContext(UserContext);
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      {/* <Signup/> */}
        <Main/>
       {/* <ToastContainer autoClose={2000} closeButton={false} />
       {user ? <Router /> : <Auth />} */}
