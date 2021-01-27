@@ -4,6 +4,33 @@ const User = require('../models/User')
 const Tweet = require('../models/Tweet')
 const auth = require('../middlewares/auth')
 
+router.post('/feed', async (req, res) => {
+    const user = await User.findById(req.body.user.id);
+    if (!user) {
+        res.status(401).json({
+            message: `No user found for id ${req.params.id}`,
+        });
+    }
+    const following = user.following;
+    const users = await User.find()
+        .where("_id")
+        .in(following.concat([user.id]))
+        .exec();
+    const tweetsID = users.map((user) => user.tweets);
+    const tweets = await Tweet.find()
+        .populate({
+            path: "children",
+            select: "text",
+            populate: { path: "user", select: "avatar username" },
+        })
+        .populate({ path: "user", select: "avatar username" })
+        .sort("-createdAt")
+        .where("_id")
+        .in(tweetsID.map((tweet) => tweet[0]))
+        .exec();
+
+    res.status(200).json({ success: true, data: tweets });
+})
 
 router.post('/getThread', async (req, res) => {
     const tweet = await Tweet.findById(req.body.tweet.id)

@@ -14,7 +14,7 @@ import 'emoji-mart/css/emoji-mart.css'
 
 
 // test 
-import Main from './components/Auth/Main'
+import Main from './components/Auth/main'
 import Signup from './components/Auth/SignUpDialog'
 function App() {
 

@@ -48,11 +48,9 @@ function Register({ setAuth }) {
             setLoading(false)
         }
 
-        // const user = await client("/auth/me");
-        // setUser(user.data);
-
-        // localStorage.setItem("user", JSON.stringify(user.data));
-
+        const user = await client("/api/user/auth");
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
 
         setUsername('')
         setPassword('')

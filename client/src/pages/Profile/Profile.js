@@ -30,7 +30,7 @@ function Profile() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    client(`/users/${handle}`)
+    client(`/api/user/${handle}`)
       .then((res) => {
         setLoading(false);
         setDeadend(false);
@@ -78,7 +78,7 @@ function Profile() {
         <div>
           <Avatar size="xlarge" border src={profile.avatar} />
 
-          {profile?.isMe ? (
+          {profile._id === JSON.parse(localStorage.getItem('user')).id ? (
             <div>
               <ThemeButton
                 primary
@@ -102,8 +102,8 @@ function Profile() {
           <TextBody>@{profile?.username}</TextBody>
           <TextBody>{profile.createdAt}</TextBody>
           <div className='profile-page__detail--b'>
-            <TextBody><span className='bold'>{profile.followingCount}</span> following</TextBody>
-            <TextBody><span className='bold'>{profile.followersCount}</span> followers</TextBody>
+            <TextBody><span className='bold'>{profile?.following?.length}</span> following</TextBody>
+            <TextBody><span className='bold'>{profile?.followers?.length}</span> followers</TextBody>
           </div>
         </div>
 

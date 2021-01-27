@@ -26,7 +26,11 @@ function Home() {
         setLoading(true);
         setFeed(null)
 
-        client("/users/feed")
+        const body = {
+            user:JSON.parse(localStorage.getItem('user'))
+        }
+
+        client("/tweets/feed", {body})
             .then((res) => {
                 setFeed(res.data);
                 setLoading(false);

@@ -11,7 +11,7 @@ import { Reply, Retweet, Like, Share, LikeFill } from '../icons'
 import './Tweet.css'
 
 function Tweet({ post }) {
-    const { _id, isLiked, isRetweeted, comments, retweetCount, likesCount, user, createdAt, caption, tags, files } = post
+    const { _id, isLiked, isRetweeted, comments, retweetCount, likesCount, user, createdAt, text, tags, files } = post
     const history = useHistory()
     const [likedState, setLiked] = useState(isLiked);
     const [likesState, setLikes] = useState(likesCount);
@@ -62,7 +62,7 @@ function Tweet({ post }) {
 
                     <span>
                         <Link to={`/${handle}/status/${_id}`}>
-                            <p>{caption}</p>
+                            <p>{text}</p>
                         </Link>
                     </span>
 
@@ -86,7 +86,7 @@ function Tweet({ post }) {
                             <Button icon href={`/${handle}/status/${_id}`}>
                                 <Reply />
                             </Button>
-                            <span>{comments.length > 0 && comments.length}</span>
+                            {/* <span>{comments.length > 0 && comments.length}</span> */}
                         </div>
 
                         <div className={retweeted ? "isRetweet" : ""}>
