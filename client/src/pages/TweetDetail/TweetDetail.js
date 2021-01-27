@@ -39,12 +39,15 @@ function TweetDetail({ }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        client(`/posts/${params.tweetId}`)
+        client(`/tweets/postTweet/${params.tweetId}`)
             .then((res) => {
                 setTweet(res.data)
                 setComments(res.data.comments)
             })
-            .catch((err) => toast.error(err))
+            .catch((err) => {
+                console.log(err)
+                toast.error(err)
+            })
 
     }, [params.tweetId])
 
