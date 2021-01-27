@@ -2,10 +2,10 @@
 
 ## Team
 
-  - 
-  -  
-  - 
-  - 
+  - Asem Basheer
+  - Aya Abuyousef
+  - Emad Aqel
+  - Razan Abusamra 
   
 ## Table of Contents
 
@@ -19,43 +19,55 @@
 
 ## About
 
-- 
+- A Twitter Clone - That have the top functionality of Twitter the well known social platform.
 
 ## Technologies Used
 
-- 
-- 
-- 
+- MERN Stack:
+- MongoDB Atlas 
+- Express
+- React 
+- Node.js
 
 
 ## Requirements
 
-- 
+- Code Editer 
+- Node.js 
 
 ## Development
 
 1. Fork the repo from github.
 2. Clone down your fork
 ```
-git clone https://github.com/<Your Github userName>/
+git clone https://github.com/<Your Github userName>/TwitterClone
 ```
 3. Move into the repo after its been cloned onto your local machine.
 4. Follow the instructions in the 'Installing Dependencies' section.
 
 ### Installing Dependencies
-1. Open terminal 1: From root directory to forntend directory:
+1. Open terminal 1: From root directory to client directory:
 
 ```
-cd frontend/
+cd client/
 npm install
+npm start 
 
 ```
+2. Open terminal 2: From root directory :
 
+```
+npm install
+npm start 
 
+```
 
 ### Links
+- 
 ### Picture Documentation 
-![Home Page]()
+![Home Page](https://i.imgur.com/m20umk2.png)
+![Home Page](https://i.imgur.com/XDoCZaY.png)
+![Home Page](https://i.imgur.com/ZxiVyFi.png)
 
 
 
