@@ -27,6 +27,7 @@ app.use(cors())
 
 
 app.use('/api/user', require('./backend/routes/user'))
+app.use('/tweets', require('./backend/routes/tweet'))
 
 
 server.listen(process.env.PORT , () => console.log(`Server listening to port ${process.env.PORT}.`))
