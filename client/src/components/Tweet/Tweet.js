@@ -14,10 +14,10 @@ function Tweet({ post }) {
     const { _id, isLiked, isRetweeted, comments, retweetCount, likesCount, user, createdAt, text, tags, files } = post
     const history = useHistory()
     const [likedState, setLiked] = useState(isLiked);
-    const [likesState, setLikes] = useState(likesCount);
+    const [likesState, setLikes] = useState(likesCount || 0);
 
     const [retweeted, setRetweeted] = useState(isRetweeted);
-    const [retweets, setRetweets] = useState(retweetCount);
+    const [retweets, setRetweets] = useState(retweetCount || 0);
 
     const handle = user?.username;
 
@@ -92,7 +92,7 @@ function Tweet({ post }) {
                         <div className={retweeted ? "isRetweet" : ""}>
                             <Button icon onClick={handleToggleRetweet} >
                                 <Retweet />
-                            </Button >
+                            </Button>
                             <span>{retweets}</span>
                         </div>
 
