@@ -54,13 +54,15 @@ function TweetEditor() {
         setTextTweet("");
 
         const newPost = {
-            caption: cleanedCaption,
+            user: { "id": JSON.parse(localStorage.getItem("user")).id },
+            text: cleanedCaption,
             files: [postImage],
             tags: tag,
         };
 
-        client(`/posts`, { body: newPost }).then((res) => {
+        client(`/tweets/postTweet`, { body: newPost }).then((res) => {
             const post = res.data;
+            console.log(post)
             post.isLiked = false;
             post.isSaved = false;
             post.isMine = true;

@@ -1,4 +1,4 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { loadUser } from './Redux/user/userAction'
 
 import React, { useContext, useEffect } from 'react';
@@ -14,7 +14,7 @@ import 'emoji-mart/css/emoji-mart.css'
 
 
 // test 
-import Main from './components/Auth/Main'
+import Main from './components/Auth/main'
 import Signup from './components/Auth/SignUpDialog'
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <ToastContainer autoClose={2000} closeButton={false} />
-      {user ? <Router /> : <Main/>}
+      {user ? <Router /> : <Main />}
       {/* <ToastContainer autoClose={2000} closeButton={false} />
       {user ? <Router /> : <Auth />} */}
     </>
