@@ -32,8 +32,8 @@ router.post('/feed', async (req, res) => {
     res.status(200).json({ success: true, data: tweets });
 })
 
-router.post('/getThread', async (req, res) => {
-    const tweet = await Tweet.findById(req.body.tweet.id)
+router.get('/getThread/:id', async (req, res) => {
+    const tweet = await Tweet.findById(req.params.id)
         .populate({
             path: "children",
             populate: {

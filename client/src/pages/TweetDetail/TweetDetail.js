@@ -26,7 +26,7 @@ function TweetDetail({ }) {
 
             if (!commentText) return toast.error('write a comment first ..:)')
 
-            client(`/posts/${tweet._id}/comments`, {
+            client(`/getThread/${tweet._id}`, {
                 body: { text: commentText },
             }).then((resp) => {
                 setComments([...comments, resp.data]);
@@ -39,7 +39,7 @@ function TweetDetail({ }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        client(`/tweets/postTweet/${params.tweetId}`)
+        client(`/tweets/getThread/${params.tweetId}`)
             .then((res) => {
                 setTweet(res.data)
                 setComments(res.data.comments)

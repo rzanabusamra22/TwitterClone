@@ -61,7 +61,7 @@ function Tweet({ post }) {
                     </div>
 
                     <span>
-                        <Link to={`/${handle}/status/${_id}`}>
+                        <Link to={`/${handle}/status/${_id}`} style={{color:'black'}}>
                             <p>{text}</p>
                         </Link>
                     </span>
