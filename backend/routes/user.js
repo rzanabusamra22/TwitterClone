@@ -36,13 +36,14 @@ router.post('/signup', async (req, res) => {
         })
     }
     catch (err) {
-        res.status(404).json({ sucess: false, err })
+        res.status(400).json({ sucess: false, message:err.message })
     }
 })
 
 router.post('/signin', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username })
+        if(!user) throw Error ("User doesn't exist")
         const match = await bcrypt.compare(req.body.password, user.password)
         if (match) {
             const token = await jwt.sign({ _id: user._id }, process.env.secret)
@@ -51,9 +52,11 @@ router.post('/signin', async (req, res) => {
                 token,
                 user
             })
+        }else{
+            throw Error("Incorrect password")
         }
     } catch (err) {
-        res.status(404).json({ success: false, err })
+        res.status(400).json({ sucess: false, message:err.message })
     }
 })
 
