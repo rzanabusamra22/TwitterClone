@@ -33,7 +33,7 @@ function EditProfile() {
       fullname: fullname,
       bio: bio,
     };
-
+    //  ??
     client("/users", { method: "PUT", body })
       .then((res) => {
         setUser(res.data);

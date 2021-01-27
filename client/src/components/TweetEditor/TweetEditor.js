@@ -98,19 +98,17 @@ function TweetEditor() {
                 )}
 
                 {/* old Text */}
-                {/* <TextareaAutosize
+                <TextareaAutosize
                     rows="59"
                     placeholder="What's happening?"
                     type="text"
                     onChange={(e) => setTextTweet(e.target.value)}
                     value={textTweet}
-                /> */}
+                />
 
                 {/* new Text Limiter */}
-                <TextLimit limit={28} rows={3} type="text"
-                onChange={(e) => setTextTweet(e.target.value)}
-                value={textTweet}
-                ></TextLimit>
+                
+                {/* <TextLimit limit={28} rows={3} /> */}
 
               
                 <div className="tweet-editor__body--secondary">
