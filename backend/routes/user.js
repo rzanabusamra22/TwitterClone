@@ -30,20 +30,20 @@ router.post('/signup', async (req, res) => {
         const user = await User.create({ username, email, password });
         const token = await jwt.sign({ _id: user._id }, process.env.secret)
         res.header("Authorization", token).status(201).json({
-            sucess: true,
+            success: true,
             user,
-            token: token
+            token
         })
     }
     catch (err) {
-        res.status(400).json({ sucess: false, message:err.message })
+        res.status(400).json({ success: false, message: err.message })
     }
 })
 
 router.post('/signin', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username })
-        if(!user) throw Error ("User doesn't exist")
+        if (!user) throw Error("User doesn't exist")
         const match = await bcrypt.compare(req.body.password, user.password)
         if (match) {
             const token = await jwt.sign({ _id: user._id }, process.env.secret)
@@ -52,11 +52,22 @@ router.post('/signin', async (req, res) => {
                 token,
                 user
             })
-        }else{
+        } else {
             throw Error("Incorrect password")
         }
     } catch (err) {
-        res.status(400).json({ sucess: false, message:err.message })
+        res.status(400).json({ success: false, message: err.message })
+    }
+})
+
+router.get('/:username', async (req, res) => {
+    const user = await User.findOne({ username: req.params.username })
+    if (!user) {
+        res.status(401).json({
+            message: `No user found`,
+        });
+    } else {
+        res.status(200).json({ success: true, data: user });
     }
 })
 
@@ -89,6 +100,7 @@ router.post('/:id/follow', async (req, res) => {
         res.status(200).json({ success: true, msg: 'followed' });
     }
 })
+
 
 router.post('/following', async (req, res) => {
     const user = await User.findById(req.body.user.id)

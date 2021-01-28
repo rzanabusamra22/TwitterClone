@@ -15,19 +15,21 @@ const Follow = ({ nobtn, isFollowing, incFollowers, decFollowers, userId, userna
         [isFollowing]);
 
     const handleFollow = () => {
-
+        const body = {
+            user:JSON.parse(localStorage.getItem('user'))
+        }
         if (followingState) {
             setFollowingState(false);
             if (decFollowers) {
                 decFollowers();
             }
-            client(`/users/${userId}/unfollow`);
+            client(`/api/user/${userId}/follow`,{body});
         } else {
             setFollowingState(true);
             if (incFollowers) {
                 incFollowers();
             }
-            client(`/users/${userId}/follow`);
+            client(`/api/user/${userId}/follow`,{body});
 
             //
             if (router.pathname === '/' && username) {

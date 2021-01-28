@@ -4,9 +4,36 @@ const User = require('../models/User')
 const Tweet = require('../models/Tweet')
 const auth = require('../middlewares/auth')
 
+router.post('/feed', async (req, res) => {
+    const user = await User.findById(req.body.user.id);
+    if (!user) {
+        res.status(401).json({
+            message: `No user found for id ${req.params.id}`,
+        });
+    }
+    const following = user.following;
+    const users = await User.find()
+        .where("_id")
+        .in(following.concat([user.id]))
+        .exec();
+    const tweetsID = users.map((user) => user.tweets);
+    const tweets = await Tweet.find()
+        .populate({
+            path: "children",
+            select: "text",
+            populate: { path: "user", select: "avatar username" },
+        })
+        .populate({ path: "user", select: "avatar username" })
+        .sort("-createdAt")
+        .where("_id")
+        .in(tweetsID.map((tweet) => tweet[0]))
+        .exec();
 
-router.post('/getThread', async (req, res) => {
-    const tweet = await Tweet.findById(req.body.tweet.id)
+    res.status(200).json({ success: true, data: tweets });
+})
+
+router.get('/getThread/:id', async (req, res) => {
+    const tweet = await Tweet.findById(req.params.id)
         .populate({
             path: "children",
             populate: {
@@ -121,6 +148,31 @@ router.post('/editBio', async (req, res) => {
         })
     res.status(200).json({ success: true, data: { newBio: bio } });
 })
+router.post('/likes', async (req, res, next) => {
+    // make sure that the post exists
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+        return next({
+            message: `No post found for id ${req.params.id}`,
+            statusCode: 404,
+        });
+    }
+
+    if (post.likes.includes(req.user.id)) {
+        const index = post.likes.indexOf(req.user.id);
+        post.likes.splice(index, 1);
+        post.likesCount = post.likesCount - 1;
+        await post.save();
+    } else {
+        post.likes.push(req.user.id);
+        post.likesCount = post.likesCount + 1;
+        await post.save();
+    }
+
+    res.status(200).json({ success: true, data: {} });
+});
+
 
 
 module.exports = router

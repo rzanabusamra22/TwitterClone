@@ -11,13 +11,13 @@ import { Reply, Retweet, Like, Share, LikeFill } from '../icons'
 import './Tweet.css'
 
 function Tweet({ post }) {
-    const { _id, isLiked, isRetweeted, comments, retweetCount, likesCount, user, createdAt, caption, tags, files } = post
+    const { _id, isLiked, isRetweeted, comments, retweetCount, likesCount, user, createdAt, text, tags, files } = post
     const history = useHistory()
     const [likedState, setLiked] = useState(isLiked);
-    const [likesState, setLikes] = useState(likesCount);
+    const [likesState, setLikes] = useState(likesCount || 0);
 
     const [retweeted, setRetweeted] = useState(isRetweeted);
-    const [retweets, setRetweets] = useState(retweetCount);
+    const [retweets, setRetweets] = useState(retweetCount || 0);
 
     const handle = user?.username;
 
@@ -61,8 +61,8 @@ function Tweet({ post }) {
                     </div>
 
                     <span>
-                        <Link to={`/${handle}/status/${_id}`}>
-                            <p>{caption}</p>
+                        <Link to={`/${handle}/status/${_id}`} style={{color:'black'}}>
+                            <p>{text}</p>
                         </Link>
                     </span>
 
@@ -86,13 +86,13 @@ function Tweet({ post }) {
                             <Button icon href={`/${handle}/status/${_id}`}>
                                 <Reply />
                             </Button>
-                            <span>{comments.length > 0 && comments.length}</span>
+                            {/* <span>{comments.length > 0 && comments.length}</span> */}
                         </div>
 
                         <div className={retweeted ? "isRetweet" : ""}>
                             <Button icon onClick={handleToggleRetweet} >
                                 <Retweet />
-                            </Button >
+                            </Button>
                             <span>{retweets}</span>
                         </div>
 
